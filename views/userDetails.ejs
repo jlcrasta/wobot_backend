@@ -1,0 +1,32 @@
+<%- include('./common/head.ejs') %>
+
+    <div class="container mt-5 p-3 border rounded bg-light" style="width: 1000px;">
+        <table class="table table-bordered">
+
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <%= userDetails.userName %>
+                    </td>
+
+
+                    <td>
+                        <%= userDetails.firstName %>
+                    </td>
+
+                    <td>
+                        <%= userDetails.lastName %>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <%- include('./common/tail.ejs') %>

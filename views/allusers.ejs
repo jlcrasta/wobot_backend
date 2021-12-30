@@ -1,0 +1,17 @@
+<%- include('./common/head.ejs') %>
+
+
+    <div class="container mt-5 p-3 border rounded" style="width: 600px;">
+        <h2 class="mx-auto my-4" style="width: 400px;">Total number of users : <%= users.length %>
+        </h2>
+
+
+        <% for(let i of users){ %>
+            <p class="border rounded py-2 px-3 bg-light">
+                <%= i.firstName %>
+            </p>
+            <% } %>
+
+    </div>
+
+    <%- include('./common/tail.ejs') %>

@@ -1,0 +1,33 @@
+<%- include('./common/head.ejs') %>
+
+    <div class="container mt-5 p-3 border rounded" style="width: 600px;">
+
+        <h2 class="mx-auto my-2" style="width: 100px;">Welcome</h2>
+
+        <form action="/fetchUsers" method="get" class="ml-3 my-3">
+            <label for="userlist">Fetch User List</label>
+            <button id="userlist" class="btn btn-primary ml-3 btn-sm">Fetch</button>
+        </form>
+
+        <form action="/fetchUsersDetails" method="get" class="ml-3 my-3">
+            <label for="userdetails">Fetch User Details</label>
+            <button id="userdetails" class="btn btn-primary ml-3 btn-sm">Fetch</button>
+        </form>
+
+        <form action="/uploadProducts" method="post" class="ml-3 my-3" style="display: flex;">
+            <label for="upload" style="width: 200px;">Upload products</label>
+            <input type="file" accept=".csv" name="csvFile" id="upload" required class="form-control-file ml-2">
+            <button id="upload" class="btn btn-success btn-sm">Upload</button>
+        </form>
+
+        <form action="/productList" method="get" class="ml-3 my-3">
+            <label for="productlist">Fetch Product List</label>
+            <button id="productlist" class="btn btn-primary ml-3 btn-sm">Fetch</button>
+        </form>
+
+        <form action="/logout" method="post" class="form-control-lg">
+            <button type="submit" class="btn btn-danger btn-md btn-block">Logout</button>
+        </form>
+
+    </div>
+    <%- include('./common/tail.ejs') %>

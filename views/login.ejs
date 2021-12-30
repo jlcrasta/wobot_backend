@@ -1,0 +1,30 @@
+<%- include('./common/head.ejs') %>
+    <% if(error && error.length) {%>
+        <p class="alert alert-danger" role="alert">
+            <%= error %>
+        </p>
+        <% } %>
+
+            <% if(success && success.length) {%>
+                <p class="alert alert-success" role="alert">
+                    <%= success %>
+                </p>
+                <% } %>
+                    <div class="container mt-5 p-3 border rounded" style="width: 600px;">
+
+                        <h1 class="mx-auto my-2" style="width: 100px;">Login</h1>
+
+                        <form action="/login" method="post">
+                            <label for="uname" class="my-2">Username</label>
+                            <input type="text" id="uname" name="username" class="form-control">
+
+                            <label for="pass" class="my-2">Password</label>
+                            <input type="password" id="pass" name="password" class="form-control">
+
+                            <button type="submit" class="btn btn-primary btn-lg btn-block my-4">Login</button>
+                        </form>
+
+                        <a href="/signup" >Signup Page</a>
+
+                    </div>
+                    <%- include('./common/tail.ejs') %>

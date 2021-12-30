@@ -1,0 +1,55 @@
+<%- include('./common/head.ejs') %>
+
+    <% if(success && success.length) {%>
+        <p class="alert alert-success" role="alert">
+            <%= success %>
+        </p>
+        <% } %>
+            <% if(error && error.length) {%>
+                <p class="alert alert-danger" role="alert">
+                    <%= error %>
+                </p>
+                <% } %>
+                    <div class="container mt-5 p-3 border rounded bg-light mb-4" style="width: 1000px;">
+                        <h2 class="mx-auto mb-4" style="width: 500px;">All products of User <%= user.firstName + ' ' +
+                                user.lastName %>
+                        </h2>
+
+                        <div class="container box">
+                            <% if(products && products.length==0) {%>
+                                <h3 class="my-4 mx-auto" style="width: 500px;" >No Products Here!!!</h3>
+                                <% } %>
+
+
+                                    <table class="table table-bordered ">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Product Description</th>
+                                                <th scope="col">Product Quantity(Kg)</th>
+                                                <th scope="col">Product Price(₹/kg)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% for(let p of products) {%>
+                                                <tr>
+                                                    <td>
+                                                        <%= p.productName %>
+                                                    </td>
+                                                    <td>
+                                                        <%= p.description %>
+                                                    </td>
+                                                    <td>
+                                                        <%= p.quantity %>
+                                                    </td>
+                                                    <td>
+                                                        <%= p.price %>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+
+                        </div>
+                    </div>
+                    <%- include('./common/tail.ejs') %>
