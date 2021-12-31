@@ -2,6 +2,8 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
+const fs = require('fs');
+const multer = require('multer');
 
 const express = require('express')
 const app = express();
@@ -14,11 +16,13 @@ const Products = require('./schema/productSchema')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const csvtojson = require('csvtojson');
+
 const flash = require('connect-flash')
 const signinSchema = require('./utilities/signinValidate')
 const loginSchema = require('./utilities/loginValidate')
 const errorMsg = require('./utilities/errorMsg');
 const bcrypt = require('bcrypt')
+
 const database = process.env.DBURL || 'mongodb://localhost:27017/wobot';
 const secret = process.env.SECRET || 'b1nTQIF8qt';
 
@@ -34,6 +38,8 @@ mongoose.connect(database, {
         console.log(err);
     })
 
+const upload = multer({ dest: 'tmp/csv/' });
+
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '/views'))
 
@@ -42,6 +48,7 @@ app.use(express.json())
 
 app.use(cookieParser(secret));
 app.use(flash())
+//app.use(upload())
 
 app.use(session({//here session is created and made available in every route
     secret: 'secret',
@@ -169,9 +176,8 @@ app.get('/fetchUsersDetails', isAuth, wrapAsync(async (req, res) => {//fetches u
     res.render('userDetails.ejs', { userDetails })
 }))
 
-app.post('/uploadProducts', isAuth, wrapAsync(async (req, res) => {//to update products from csv file
-    const data = req.body.csvFile
-    const jsondata = await csvtojson().fromFile(data)
+app.post('/uploadProducts', upload.single('csvFile'), isAuth, wrapAsync(async (req, res) => {//to update products from csv file
+    const jsondata = await csvtojson().fromFile(req.file.path)
     const userN = req.signedCookies.username;
     const user = await User.findOne({ userName: userN })
     for (let i of jsondata) {
