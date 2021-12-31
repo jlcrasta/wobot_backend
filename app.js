@@ -2,9 +2,8 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
-const fs = require('fs');
-const multer = require('multer');
 
+const multer = require('multer');
 const express = require('express')
 const app = express();
 const PORT = 5500;
@@ -16,15 +15,14 @@ const Products = require('./schema/productSchema')
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
 const csvtojson = require('csvtojson');
-
 const flash = require('connect-flash')
 const signinSchema = require('./utilities/signinValidate')
 const loginSchema = require('./utilities/loginValidate')
 const errorMsg = require('./utilities/errorMsg');
 const bcrypt = require('bcrypt')
 
-const database = process.env.DBURL || 'mongodb://localhost:27017/wobot';
-const secret = process.env.SECRET || 'b1nTQIF8qt';
+const database = 'mongodb://localhost:27017/wobot' || process.env.DBURL;
+const secret = 'b1nTQIF8qt' || process.env.SECRET ;
 
 mongoose.connect(database, {
     useNewUrlParser: true,
